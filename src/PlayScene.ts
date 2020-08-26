@@ -14,6 +14,7 @@ export default class PlayScene extends Phaser.Scene {
   }
 
   create () {
+    // background
     this.add.image(400, 300, 'space')
 
     const emitter = this.add.particles('red')
@@ -23,7 +24,7 @@ export default class PlayScene extends Phaser.Scene {
         blendMode: 'ADD',
       })
 
-      const logo = this.physics.add.image(400, 100, 'logo')
+    const logo = this.physics.add.image(400, 100, 'logo')
       .setVelocity(100, 200)
       .setBounce(1, 1)
       .setCollideWorldBounds(true)

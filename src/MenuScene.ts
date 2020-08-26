@@ -6,6 +6,7 @@ export default class MenuScene extends Phaser.Scene {
   }
 
   create () {
+    // background
     this.add.image(400, 300, 'space')
 
     this.add.text(400, 200, 'A quick maths game\n\n< play >', {
