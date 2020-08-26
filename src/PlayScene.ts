@@ -13,23 +13,55 @@ export default class PlayScene extends Phaser.Scene {
     })
   }
 
+  addChallenge() {
+
+    const items = ['7' , '*', '3', '=', '?']
+
+    items.forEach((item, idx) => {
+      this.add.text(200 + (idx * 100), 100, item, {
+        align: 'center',
+        fill: 'white',
+        fontFamily: 'sans-serif',
+        fontSize: 48,
+      })
+        .setOrigin(0.5, 0)
+    })
+
+    const answers = ['19', '21', '23']
+
+    answers.forEach((item, idx) => {
+      this.add.text(300 + (idx * 100), 300, item, {
+        align: 'center',
+        fill: 'white',
+        fontFamily: 'sans-serif',
+        fontSize: 48,
+      })
+        .setOrigin(0.5, 0)
+    })
+    
+  }
+
   create () {
     // background
     this.add.image(400, 300, 'space')
 
-    const emitter = this.add.particles('red')
-      .createEmitter({
-        speed: 100,
-        scale: { start: 1, end: 0 },
-        blendMode: 'ADD',
-      })
+    // const emitter = this.add.particles('red')
+    //   .createEmitter({
+    //     speed: 100,
+    //     scale: { start: 1, end: 0 },
+    //     blendMode: 'ADD',
+    //   })
 
-    const logo = this.physics.add.image(400, 100, 'logo')
-      .setVelocity(100, 200)
-      .setBounce(1, 1)
-      .setCollideWorldBounds(true)
+    this.addChallenge()
+    
+    
 
-    emitter.startFollow(logo)
+    // const logo = this.physics.add.image(400, 100, 'logo')
+    //   .setVelocity(100, 200)
+    //   .setBounce(1, 1)
+    //   .setCollideWorldBounds(true)
+
+    // emitter.startFollow(logo)
 
     this.input.keyboard
       .on('keydown-R', function () {
