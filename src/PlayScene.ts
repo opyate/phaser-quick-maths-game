@@ -13,9 +13,16 @@ export default class PlayScene extends Phaser.Scene {
     })
   }
 
+  onClick(pointer) {
+    const result = parseInt(this.text.text) === this.answer
+    console.log(result)
+  }
+
   addChallenge() {
 
     const items = ['7' , '*', '3', '=', '?']
+    const answer = eval(items.slice(0,3).join(' '))
+
 
     items.forEach((item, idx) => {
       this.add.text(200 + (idx * 100), 100, item, {
@@ -30,13 +37,16 @@ export default class PlayScene extends Phaser.Scene {
     const answers = ['19', '21', '23']
 
     answers.forEach((item, idx) => {
-      this.add.text(300 + (idx * 100), 300, item, {
+      const text = this.add.text(300 + (idx * 100), 300, item, {
         align: 'center',
         fill: 'white',
         fontFamily: 'sans-serif',
         fontSize: 48,
       })
         .setOrigin(0.5, 0)
+
+      text.setInteractive(new Phaser.Geom.Rectangle(0, 0, text.width, text.height), Phaser.Geom.Rectangle.Contains)
+      text.on('pointerdown', this.onClick, { text, answer })
     })
     
   }
